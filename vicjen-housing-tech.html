@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VICJEN Housing Tech: AI-Powered Real Estate for Nigeria</title>
+<meta name="description" content="VICJEN Housing Tech connects verified buyers and sellers, values property with AI, builds housing, and lets at below-market rates across Anambra and Abuja, Nigeria.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1C1B18;
+    --parchment:#FAF6EF;
+    --clay:#A0431F;
+    --clay-dark:#7E331A;
+    --green:#3D5C4C;
+    --ochre:#D4A24C;
+    --grey:#6B6557;
+    --line:#DCD4C3;
+    --card:#FFFFFF;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,h4{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    line-height:1.08;
+    letter-spacing:-0.01em;
+  }
+
+  .mono{
+    font-family:'JetBrains Mono',monospace;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    font-size:1.05rem;
+    font-weight:600;
+  }
+
+  a{color:inherit;text-decoration:none;}
+
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* ===== FOUNDATION LINE SYSTEM ===== */
+  .foundation{
+    position:relative;
+  }
+  .foundation::before{
+    content:'';
+    position:absolute;
+    left:0; right:0; top:0;
+    height:3px;
+    background:var(--ink);
+  }
+  .foundation-label{
+    position:absolute;
+    top:-18px;
+    left:32px;
+    background:var(--parchment);
+    padding:2px 10px;
+    color:var(--grey);
+    line-height:1.3;
+    white-space:nowrap;
+    z-index:2;
+  }
+
+  /* ===== NAV ===== */
+  header{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(250,246,239,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:20px 32px;
+    max-width:1180px;
+    margin:0 auto;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:1.3rem;
+    letter-spacing:-0.01em;
+  }
+  .brand-mark{
+    width:32px;
+    height:32px;
+    flex-shrink:0;
+  }
+  .nav-links{
+    display:flex;
+    gap:36px;
+    align-items:center;
+  }
+  .nav-links a{
+    font-size:0.92rem;
+    font-weight:500;
+    color:var(--ink);
+    opacity:0.75;
+    transition:opacity 0.2s;
+  }
+  .nav-links a:hover{opacity:1;}
+  .nav-cta{
+    background:var(--ink);
+    color:var(--parchment)!important;
+    padding:10px 20px;
+    opacity:1!important;
+    font-weight:600;
+    font-size:0.88rem;
+  }
+  .nav-cta:hover{background:var(--clay);}
+  .nav-toggle{display:none;}
+
+  /* ===== HERO ===== */
+  .hero{
+    padding:90px 0 70px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:'';
+    position:absolute;
+    top:-20%;
+    right:-8%;
+    width:560px;
+    height:560px;
+    background:
+      repeating-radial-gradient(circle at center, transparent 0, transparent 38px, rgba(160,67,31,0.07) 39px, rgba(160,67,31,0.07) 40px);
+    border-radius:50%;
+    pointer-events:none;
+    z-index:0;
+  }
+  .hero .wrap{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:60px;
+    align-items:center;
+    position:relative;
+    z-index:1;
+  }
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    color:var(--clay);
+    margin-bottom:22px;
+  }
+  .eyebrow::before{
+    content:'';
+    width:7px;height:7px;
+    background:var(--clay);
+    border-radius:50%;
+  }
+  .hero h1{
+    font-size:clamp(2.2rem, 4.2vw, 3.3rem);
+    margin-bottom:24px;
+    line-height:1.15;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--clay);
+  }
+  .hero p.lede{
+    font-size:1.15rem;
+    color:var(--grey);
+    max-width:48ch;
+    margin-bottom:34px;
+    line-height:1.6;
+  }
+  .hero-ctas{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:14px 26px;
+    font-weight:600;
+    font-size:0.95rem;
+    border:1.5px solid var(--ink);
+    transition:all 0.2s ease;
+  }
+  .btn-solid{
+    background:var(--ink);
+    color:var(--parchment);
+  }
+  .btn-solid:hover{
+    background:var(--clay);
+    border-color:var(--clay);
+  }
+  .btn-outline{
+    background:transparent;
+    color:var(--ink);
+  }
+  .btn-outline:hover{
+    background:var(--ink);
+    color:var(--parchment);
+  }
+
+  .hero-stat-block{
+    border:1.5px solid var(--ink);
+    background:var(--card);
+    padding:34px;
+    position:relative;
+    transition:transform 0.3s ease;
+    margin-top:8px;
+  }
+  .hero-stat-block:hover{
+    transform:translate(-2px,-2px);
+  }
+  .hero-stat-block::before{
+    content:'';
+    position:absolute;
+    top:8px; left:8px; right:-8px; bottom:-8px;
+    border:1.5px solid var(--ink);
+    z-index:-1;
+    transition:all 0.3s ease;
+  }
+  .stat-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    padding:16px 0;
+    border-bottom:1px solid var(--line);
+    transition:padding-left 0.2s ease;
+  }
+  .stat-row:hover{
+    padding-left:6px;
+  }
+  .stat-row:first-child{padding-top:0;}
+  .stat-row:last-child{border-bottom:none;padding-bottom:0;}
+  .stat-row .label{
+    font-size:0.88rem;
+    color:var(--grey);
+  }
+  .stat-row .val{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:1.3rem;
+    color:var(--clay);
+    text-align:right;
+  }
+
+  /* ===== SECTION HEADERS ===== */
+  section{
+    padding:80px 0;
+  }
+  .section-head{
+    max-width:680px;
+    margin-bottom:54px;
+  }
+  .section-head .mono{color:var(--clay);display:block;margin-bottom:16px;font-size:1.1rem;}
+  .section-head h2{font-size:clamp(2.1rem,4vw,2.8rem);}
+  .section-head p{
+    color:var(--grey);
+    margin-top:16px;
+    font-size:1.1rem;
+  }
+
+  /* ===== MISSION & VISION ===== */
+  .mission{
+    background:var(--clay);
+    padding:64px 0;
+  }
+  .mission-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1px;
+    background:rgba(250,246,239,0.25);
+    border:1px solid rgba(250,246,239,0.25);
+  }
+  .mission-card{
+    background:var(--clay);
+    padding:40px;
+  }
+  .mission-card .mono{
+    color:var(--parchment);
+    display:block;
+    margin-bottom:18px;
+    font-size:1rem;
+    opacity:0.85;
+  }
+  .mission-statement{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-style:italic;
+    font-size:1.4rem;
+    line-height:1.45;
+    color:var(--parchment);
+  }
+  @media (max-width:860px){
+    .mission-grid{grid-template-columns:1fr;}
+    .mission-card{padding:32px 28px;}
+    .mission-statement{font-size:1.2rem;}
+  }
+
+  /* ===== PROBLEM ===== */
+  .problem{
+    background:var(--ink);
+    color:var(--parchment);
+  }
+  .problem .section-head .mono{color:var(--ochre);}
+  .problem .section-head p{color:#C9C3B4;}
+  .problem-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:rgba(250,246,239,0.18);
+    border:1px solid rgba(250,246,239,0.18);
+  }
+  .problem-card{
+    background:var(--ink);
+    padding:32px 28px;
+  }
+  .problem-card .num{
+    font-family:'JetBrains Mono',monospace;
+    color:var(--clay);
+    font-size:0.85rem;
+    display:block;
+    margin-bottom:18px;
+  }
+  .problem-card h3{
+    font-size:1.3rem;
+    margin-bottom:10px;
+    color:var(--parchment);
+  }
+  .problem-card p{
+    color:#B9B3A4;
+    font-size:0.95rem;
+  }
+
+  /* ===== OFFER GRID ===== */
+  .offer-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+  }
+  .offer-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    padding:32px 28px;
+    transition:border-color 0.2s, transform 0.2s;
+  }
+  .offer-card:hover{
+    border-color:var(--ink);
+    transform:translateY(-3px);
+  }
+  .offer-icon{
+    width:42px;height:42px;
+    border:1.5px solid var(--ink);
+    display:flex;align-items:center;justify-content:center;
+    margin-bottom:20px;
+    font-size:1.1rem;
+    color:var(--clay);
+    transition:background 0.2s, color 0.2s;
+  }
+  .offer-card:hover .offer-icon{
+    background:var(--ink);
+    color:var(--parchment);
+  }
+  .offer-card h3{
+    font-size:1.25rem;
+    margin-bottom:10px;
+  }
+  .offer-card p{
+    color:var(--grey);
+    font-size:0.95rem;
+  }
+  .offer-tag{
+    display:inline-block;
+    margin-top:16px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.7rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--green);
+  }
+
+  /* ===== FOUNDER STORY ===== */
+  .story{
+    background:var(--card);
+    border-top:3px solid var(--ink);
+    border-bottom:3px solid var(--ink);
+  }
+  .story .wrap{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:70px;
+    align-items:center;
+    padding-top:80px;
+    padding-bottom:80px;
+  }
+  .story-visual{
+    position:relative;
+    aspect-ratio:4/5;
+    background:
+      linear-gradient(165deg, var(--clay) 0%, var(--clay-dark) 100%);
+    display:flex;
+    align-items:flex-end;
+    padding:28px;
+    overflow:hidden;
+  }
+  .story-visual::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:
+      repeating-linear-gradient(45deg, transparent 0, transparent 26px, rgba(250,246,239,0.04) 27px, rgba(250,246,239,0.04) 28px);
+    pointer-events:none;
+  }
+  .story-visual::before{
+    content:'';
+    position:absolute;
+    inset:14px;
+    border:1.5px solid rgba(250,246,239,0.5);
+    z-index:1;
+  }
+  .story-visual-mark{
+    position:absolute;
+    top:28px; left:28px;
+    color:rgba(250,246,239,0.55);
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.7rem;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    z-index:1;
+  }
+  .story-visual-text{
+    position:relative;
+    z-index:1;
+    color:var(--parchment);
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-size:1.4rem;
+    line-height:1.3;
+  }
+  .story h2{
+    font-size:clamp(1.8rem,3vw,2.4rem);
+    margin-bottom:22px;
+  }
+  .story p{
+    color:var(--ink);
+    margin-bottom:18px;
+    font-size:1.02rem;
+  }
+  .story p.dim{color:var(--grey);}
+  .story-signature{
+    margin-top:28px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+    display:flex;
+    gap:24px;
+  }
+  .signature-name{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:1.05rem;
+  }
+  .signature-role{
+    color:var(--grey);
+    font-size:0.85rem;
+  }
+
+  /* ===== IMPACT ===== */
+  .impact{
+    background:var(--green);
+    color:var(--parchment);
+  }
+  .impact .section-head .mono{color:var(--ochre);}
+  .impact .section-head p{color:#D6E0DA;}
+  .impact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+  }
+  .impact-card{
+    border:1.5px solid rgba(250,246,239,0.35);
+    padding:36px;
+  }
+  .impact-card .mono{
+    color:var(--ochre);
+    display:block;
+    margin-bottom:16px;
+  }
+  .impact-card h3{
+    color:var(--parchment);
+    font-size:1.35rem;
+    margin-bottom:14px;
+  }
+  .impact-card p{
+    color:#D6E0DA;
+    font-size:0.98rem;
+  }
+  .pledge-badge{
+    display:inline-block;
+    margin-top:18px;
+    background:var(--ochre);
+    color:var(--ink);
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.7rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    padding:6px 12px;
+    font-weight:500;
+  }
+
+  /* ===== LOCATIONS ===== */
+  .locations .wrap{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:30px;
+    padding-top:50px;
+    padding-bottom:50px;
+  }
+  .loc-item{
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .loc-dot{
+    width:10px;height:10px;
+    background:var(--clay);
+    border-radius:50%;
+    flex-shrink:0;
+  }
+  .loc-item h4{
+    font-size:1.05rem;
+    font-family:'Fraunces',serif;
+    font-weight:600;
+  }
+  .loc-item span{
+    color:var(--grey);
+    font-size:0.88rem;
+  }
+
+  /* ===== CTA BAND ===== */
+  .cta-band{
+    background:var(--ink);
+    color:var(--parchment);
+    text-align:center;
+    padding:90px 0;
+  }
+  .cta-band h2{
+    font-size:clamp(1.9rem,3.6vw,2.7rem);
+    margin-bottom:18px;
+    max-width:18ch;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .cta-band p{
+    color:#C9C3B4;
+    max-width:48ch;
+    margin:0 auto 36px;
+    font-size:1.05rem;
+  }
+  .cta-band .hero-ctas{
+    justify-content:center;
+  }
+  .cta-band .btn-outline{
+    border-color:var(--parchment);
+    color:var(--parchment);
+  }
+  .cta-band .btn-outline:hover{
+    background:var(--parchment);
+    color:var(--ink);
+  }
+  .cta-band .btn-solid{
+    background:var(--clay);
+    border-color:var(--clay);
+  }
+  .cta-band .btn-solid:hover{
+    background:var(--ochre);
+    border-color:var(--ochre);
+    color:var(--ink);
+  }
+
+  /* ===== FOOTER ===== */
+  footer{
+    padding:50px 0 36px;
+  }
+  .footer-grid{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    flex-wrap:wrap;
+    gap:30px;
+    padding-bottom:30px;
+  }
+  .footer-brand .brand{margin-bottom:14px;}
+  .footer-brand p{
+    color:var(--grey);
+    font-size:0.9rem;
+    max-width:32ch;
+  }
+  .footer-col h5{
+    font-family:'JetBrains Mono',monospace;
+    text-transform:uppercase;
+    font-size:0.7rem;
+    letter-spacing:0.08em;
+    color:var(--grey);
+    margin-bottom:14px;
+  }
+  .footer-col a{
+    display:block;
+    font-size:0.92rem;
+    margin-bottom:10px;
+    color:var(--ink);
+  }
+  .footer-col a:hover{color:var(--clay);}
+  .footer-bottom{
+    border-top:1px solid var(--line);
+    padding-top:24px;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+    font-size:0.82rem;
+    color:var(--grey);
+  }
+
+  /* ===== TRY TOOL PROMPT ===== */
+  .try-tool-prompt{
+    margin-top:46px;
+    border:1.5px dashed var(--clay);
+    background:rgba(160,67,31,0.05);
+    padding:22px 28px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  .try-tool-prompt span{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-size:1.05rem;
+  }
+  .btn-small{
+    padding:10px 18px;
+    font-size:0.85rem;
+  }
+
+  /* ===== TOOL SECTION ===== */
+  .tool-section{
+    background:var(--card);
+  }
+  .tool-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+  }
+  .tool-panel{
+    border:1.5px solid var(--ink);
+    padding:30px;
+    background:var(--parchment);
+  }
+  .tool-panel-title{
+    font-size:1.15rem;
+    margin-bottom:20px;
+    padding-bottom:14px;
+    border-bottom:1px solid var(--line);
+  }
+  .tool-row{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(130px,1fr));
+    gap:14px;
+    margin-bottom:14px;
+  }
+  .field{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+  .field label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.68rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--grey);
+  }
+  .field select, .field input{
+    border:1.5px solid var(--ink);
+    background:var(--card);
+    padding:10px 12px;
+    font-family:'Inter',sans-serif;
+    font-size:0.92rem;
+    color:var(--ink);
+  }
+  .field select:focus, .field input:focus{
+    outline:2.5px solid var(--clay);
+    outline-offset:1px;
+  }
+  .btn-full{
+    width:100%;
+    justify-content:center;
+    margin-top:6px;
+    cursor:pointer;
+    border:1.5px solid var(--ink);
+    font-family:'Inter',sans-serif;
+  }
+
+  .search-results{
+    margin-top:20px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    max-height:480px;
+    overflow-y:auto;
+    padding-right:4px;
+  }
+  .search-results.empty-state{
+    color:var(--grey);
+    font-size:0.9rem;
+    font-style:italic;
+    max-height:none;
+    overflow:visible;
+  }
+  .listing-card{
+    border:1px solid var(--line);
+    background:var(--card);
+    padding:14px 16px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    animation:fadeUp 0.4s ease both;
+    transition:border-color 0.2s;
+  }
+  .listing-card:hover{
+    border-color:var(--clay);
+  }
+  .listing-card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:12px;
+  }
+  .listing-ref{
+    display:block;
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.68rem;
+    color:var(--green);
+    letter-spacing:0.04em;
+    margin-bottom:3px;
+  }
+  .listing-info h4{
+    font-family:'Fraunces',serif;
+    font-size:0.98rem;
+    font-weight:600;
+    margin-bottom:4px;
+  }
+  .listing-info span:not(.listing-ref){
+    color:var(--grey);
+    font-size:0.82rem;
+  }
+  .listing-price{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.92rem;
+    color:var(--clay);
+    font-weight:500;
+    white-space:nowrap;
+  }
+  .listing-contact-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    border:1.5px solid var(--ink);
+    padding:9px 14px;
+    font-size:0.82rem;
+    font-weight:600;
+    color:var(--ink);
+    transition:background 0.2s, color 0.2s;
+    align-self:flex-start;
+  }
+  .listing-contact-btn:hover{
+    background:var(--ink);
+    color:var(--parchment);
+  }
+  .results-count{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--green);
+    margin-bottom:4px;
+  }
+
+  .valuation-result{
+    margin-top:20px;
+  }
+  .valuation-result.empty-state{
+    color:var(--grey);
+    font-size:0.9rem;
+    font-style:italic;
+  }
+  .val-headline{
+    border:1.5px solid var(--clay);
+    background:rgba(160,67,31,0.06);
+    padding:22px;
+    animation:fadeUp 0.4s ease both;
+  }
+  .val-headline .mono{color:var(--clay);display:block;margin-bottom:8px;}
+  .val-amount{
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:1.8rem;
+    color:var(--ink);
+    margin-bottom:4px;
+  }
+  .val-range{
+    color:var(--grey);
+    font-size:0.85rem;
+    margin-bottom:16px;
+  }
+  .val-breakdown{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    padding-top:14px;
+    border-top:1px solid rgba(160,67,31,0.25);
+  }
+  .val-breakdown-row{
+    display:flex;
+    justify-content:space-between;
+    font-size:0.85rem;
+  }
+  .val-breakdown-row span:first-child{color:var(--grey);}
+  .val-breakdown-row span:last-child{font-family:'JetBrains Mono',monospace;}
+
+  @keyframes fadeUp{
+    from{opacity:0;transform:translateY(8px);}
+    to{opacity:1;transform:translateY(0);}
+  }
+
+  .tool-disclaimer{
+    margin-top:28px;
+    font-size:0.82rem;
+    color:var(--grey);
+    text-align:center;
+    max-width:60ch;
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  @media (max-width:860px){
+    .tool-grid{grid-template-columns:1fr;}
+  }
+
+
+  @media (max-width:860px){
+    .nav-links{
+      position:fixed;
+      top:73px; left:0; right:0;
+      background:var(--parchment);
+      flex-direction:column;
+      align-items:flex-start;
+      padding:24px 32px;
+      border-bottom:1px solid var(--line);
+      gap:18px;
+      display:none;
+    }
+    .nav-links.open{display:flex;}
+    .nav-toggle{
+      display:block;
+      background:none;
+      border:none;
+      cursor:pointer;
+      padding:6px;
+    }
+    .nav-toggle span{
+      display:block;
+      width:22px;height:2px;
+      background:var(--ink);
+      margin:5px 0;
+    }
+    .hero .wrap{grid-template-columns:1fr;}
+    .hero{padding-top:50px;}
+    .problem-grid{grid-template-columns:1fr;}
+    .offer-grid{grid-template-columns:1fr;}
+    .story .wrap{grid-template-columns:1fr;padding-top:50px;padding-bottom:50px;}
+    .story-visual{aspect-ratio:16/9;}
+    .impact-grid{grid-template-columns:1fr;}
+    .locations .wrap{flex-direction:column;align-items:flex-start;}
+    .footer-grid{flex-direction:column;}
+    .foundation-label{
+      font-size:0.95rem;
+      top:-15px;
+      left:20px;
+      padding:2px 8px;
+    }
+  }
+
+  @media (max-width:420px){
+    .foundation-label{
+      font-size:0.82rem;
+      top:-13px;
+      left:16px;
+      padding:2px 7px;
+      letter-spacing:0.04em;
+    }
+  }
+
+  /* focus states */
+  a:focus-visible, button:focus-visible{
+    outline:2.5px solid var(--clay);
+    outline-offset:3px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none!important;}
+  }
+
+  .reveal{
+    opacity:0;
+    transform:translateY(22px);
+    transition:opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.in{
+    opacity:1;
+    transform:translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#" class="brand"><svg class="brand-mark" viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg"><rect x="95" y="450" width="450" height="10" fill="#1C1B18"/><path d="M 125 195 L 192 195 L 270 405 L 348 195 L 412 195 L 305 450 L 233 450 Z" fill="#A0431F"/><path d="M 475 195 L 475 358 Q 475 452 378 452 L 332 452 L 332 396 L 372 396 Q 415 396 415 354 L 415 195 Z" fill="#1C1B18"/></svg>VICJEN Housing Tech</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    <div class="nav-links" id="navLinks">
+      <a href="#mission">Mission</a>
+      <a href="#offer">What we do</a>
+      <a href="#tool">Try the platform</a>
+      <a href="#story">Our story</a>
+      <a href="#impact">Impact</a>
+      <a href="#locations">Where we are</a>
+      <a href="#contact" class="nav-cta">Get in touch</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero foundation">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow mono">AI-Powered Real Estate, Nigeria</span>
+      <h1>Know what land is <em>really</em> worth. Know who you're <em>really</em> buying from.</h1>
+      <p class="lede"><strong>VICJEN Housing Tech</strong> values property in real time against verified, current housing data, and confirms every seller before you send a deposit. One platform for search, valuation, and a safe transaction, built for Nigeria's property market.</p>
+      <div class="hero-ctas">
+        <a href="#offer" class="btn btn-solid">See the platform</a>
+        <a href="#mission" class="btn btn-outline">Our mission</a>
+      </div>
+    </div>
+    <div class="hero-stat-block">
+      <div class="stat-row">
+        <span class="label">Valuation model</span>
+        <span class="val">AI-driven, near-accurate</span>
+      </div>
+      <div class="stat-row">
+        <span class="label">Transactions</span>
+        <span class="val">Verified parties only</span>
+      </div>
+      <div class="stat-row">
+        <span class="label">Rental pricing</span>
+        <span class="val">10% below market</span>
+      </div>
+      <div class="stat-row">
+        <span class="label">Headquarters</span>
+        <span class="val">Anambra State</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mission foundation" id="mission">
+  <div class="wrap">
+    <div class="mission-grid">
+      <div class="mission-card">
+        <span class="mono">Mission</span>
+        <p class="mission-statement">To give every Nigerian buyer and seller a property transaction they can trust, using AI-driven, real-time valuation built on verified, current housing data, while housing the families that the market leaves behind through below-market rent and direct rent relief.</p>
+      </div>
+      <div class="mission-card">
+        <span class="mono">Vision</span>
+        <p class="mission-statement">A Nigeria where no family is left to rebuild alone, where every property transaction is verified and every valuation reflects real, current data, and where affordable, trustworthy housing is available to all, not reserved for the few who can afford to wait.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="problem foundation">
+  <span class="foundation-label mono" style="background:var(--ink);color:#C9C3B4;">The Problem</span>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono">Why this exists</span>
+      <h2>Land and housing in Nigeria carry risks that shouldn't exist</h2>
+      <p>Disputed titles, unverified sellers, guesswork valuations, and a housing market that prices people out of safety. We built VICJEN Housing Tech to remove these, one transaction at a time.</p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <span class="num">01</span>
+        <h3>Unverified transactions</h3>
+        <p>Land resale disputes and unreliable sellers cost buyers money, time, and trust.</p>
+      </div>
+      <div class="problem-card">
+        <span class="num">02</span>
+        <h3>Guesswork pricing</h3>
+        <p>Property and building costs are often estimated informally, with no consistent data behind the number.</p>
+      </div>
+      <div class="problem-card">
+        <span class="num">03</span>
+        <h3>Housing out of reach</h3>
+        <p>Market rates push families into instability or homelessness, especially in fast-growing cities.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="offer foundation" id="offer">
+  <span class="foundation-label mono">What We Do</span>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono">The platform</span>
+      <h2>One company, the full property journey</h2>
+      <p>From land acquisition to construction to a verified marketplace, we build the technology and the housing.</p>
+    </div>
+    <div class="offer-grid">
+      <div class="offer-card">
+        <div class="offer-icon">◆</div>
+        <h3>Verified marketplace</h3>
+        <p>Real-time listings connect buyers directly with reliable, verified sellers, in both directions, to cut out fraud and resale disputes.</p>
+        <span class="offer-tag">Live data</span>
+      </div>
+      <div class="offer-card">
+        <div class="offer-icon">▦</div>
+        <h3>AI property valuation</h3>
+        <p>Near-accurate, data-driven valuations for land and property, removing the guesswork from pricing decisions.</p>
+        <span class="offer-tag">AI-driven</span>
+      </div>
+      <div class="offer-card">
+        <div class="offer-icon">⬡</div>
+        <h3>Building cost estimation</h3>
+        <p>AI-assisted estimates for construction and development costs, built for developers and individual buyers alike.</p>
+        <span class="offer-tag">AI-driven</span>
+      </div>
+      <div class="offer-card">
+        <div class="offer-icon">◧</div>
+        <h3>Land &amp; property trading</h3>
+        <p>We acquire and resell land and houses directly, backing our own valuation model with our own capital.</p>
+        <span class="offer-tag">Direct trade</span>
+      </div>
+      <div class="offer-card">
+        <div class="offer-icon">▣</div>
+        <h3>Estate development</h3>
+        <p>We build. From land we hold to completed homes, growing housing stock across Anambra and Abuja.</p>
+        <span class="offer-tag">Build &amp; develop</span>
+      </div>
+      <div class="offer-card">
+        <div class="offer-icon">◫</div>
+        <h3>Affordable letting</h3>
+        <p>Properties let at 10% below average market rate, making stability accessible rather than exclusive.</p>
+        <span class="offer-tag">Below market</span>
+      </div>
+    </div>
+    <div class="try-tool-prompt">
+      <span>This is not a mockup. Try the valuation engine and live search below.</span>
+      <a href="#tool" class="btn btn-outline btn-small">Try it now ↓</a>
+    </div>
+  </div>
+</section>
+
+<section class="tool-section foundation" id="tool">
+  <span class="foundation-label mono">Try It Live</span>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono">Working demo</span>
+      <h2>Search listings and value a property, right now</h2>
+      <p>This runs in your browser against our sample listings and pricing model. It is a working preview of the engine our platform is built on, not a static description.</p>
+    </div>
+
+    <div class="tool-grid">
+      <!-- SEARCH PANEL -->
+      <div class="tool-panel">
+        <h3 class="tool-panel-title">Search live listings</h3>
+        <div class="tool-row">
+          <div class="field">
+            <label for="searchLocation">Location</label>
+            <select id="searchLocation">
+              <option value="">All locations</option>
+              <option value="Awka">Awka, Anambra</option>
+              <option value="Onitsha">Onitsha, Anambra</option>
+              <option value="Nnewi">Nnewi, Anambra</option>
+              <option value="Asaba-border">Asaba border, Anambra</option>
+              <option value="Maitama">Maitama, Abuja</option>
+              <option value="Gwarinpa">Gwarinpa, Abuja</option>
+              <option value="Lugbe">Lugbe, Abuja</option>
+              <option value="Kubwa">Kubwa, Abuja</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="searchType">Type</label>
+            <select id="searchType">
+              <option value="">Any type</option>
+              <option value="Land">Land</option>
+              <option value="Bungalow">Bungalow</option>
+              <option value="Duplex">Duplex</option>
+              <option value="Flat">Flat / Apartment</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="searchMax">Max price (₦)</label>
+            <input type="number" id="searchMax" placeholder="e.g. 50000000">
+          </div>
+        </div>
+        <button class="btn btn-solid btn-full" id="searchBtn">Search listings</button>
+        <div id="searchResults" class="search-results"></div>
+      </div>
+
+      <!-- VALUATION PANEL -->
+      <div class="tool-panel">
+        <h3 class="tool-panel-title">Value a property</h3>
+        <div class="tool-row">
+          <div class="field">
+            <label for="valLocation">Location</label>
+            <select id="valLocation">
+              <option value="Awka">Awka, Anambra</option>
+              <option value="Onitsha">Onitsha, Anambra</option>
+              <option value="Nnewi">Nnewi, Anambra</option>
+              <option value="Asaba-border">Asaba border, Anambra</option>
+              <option value="Maitama">Maitama, Abuja</option>
+              <option value="Gwarinpa">Gwarinpa, Abuja</option>
+              <option value="Lugbe">Lugbe, Abuja</option>
+              <option value="Kubwa">Kubwa, Abuja</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="valType">Property type</label>
+            <select id="valType">
+              <option value="Land">Land (per plot)</option>
+              <option value="Bungalow">Bungalow</option>
+              <option value="Duplex">Duplex</option>
+              <option value="Flat">Flat / Apartment</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="valSize">Size (sqm)</label>
+            <input type="number" id="valSize" placeholder="e.g. 450" value="450">
+          </div>
+        </div>
+        <div class="tool-row">
+          <div class="field">
+            <label for="valCondition">Condition</label>
+            <select id="valCondition">
+              <option value="1.12">Excellent / newly built</option>
+              <option value="1.0" selected>Good / well maintained</option>
+              <option value="0.85">Fair / needs renovation</option>
+              <option value="0.65">Distressed / needs rebuild</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="valRoad">Road access</label>
+            <select id="valRoad">
+              <option value="1.1">Tarred, major road</option>
+              <option value="1.0" selected>Tarred, side street</option>
+              <option value="0.88">Untarred, accessible</option>
+              <option value="0.75">Untarred, poor access</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn btn-solid btn-full" id="valuateBtn">Run valuation</button>
+        <div id="valuationResult" class="valuation-result"></div>
+      </div>
+    </div>
+
+    <p class="tool-disclaimer">This demo uses a simplified version of our pricing model on a sample dataset, for illustration. The contact button sends a real email to our team, but listings shown here are not live properties. Production search will run on live, verified transaction and seller data.</p>
+  </div>
+</section>
+
+<section class="story foundation" id="story">
+  <span class="foundation-label mono">Our Story</span>
+  <div class="wrap">
+    <div class="story-visual">
+      <span class="story-visual-mark">Anambra State, 2026</span>
+      <p class="story-visual-text">"We are still building the house our fathers never finished."</p>
+    </div>
+    <div>
+      <span class="mono" style="color:var(--clay);">Victor &amp; Jennifer</span>
+      <h2>Two families, displaced years apart, rebuilding from nothing</h2>
+      <p>Victor and Jennifer were both born and raised in Northern Nigeria. Insecurity forced both of their families to flee, years apart, with nothing but their lives. Jennifer's family returned to their village. Victor's family was warned they would be killed if they did not leave, and fled east to rebuild.</p>
+      <p>Both fathers started from zero, trying to put up a home for a family of six children. Both died in the middle of that effort, worn down by the weight of starting over with nothing. Today, both houses still stand unfinished, over ten years later. Jennifer's family lives in her maternal home. Victor's mother lives without a home of her own to call finished.</p>
+      <p class="dim">Victor and Jennifer met in 2021. Falling in love, they discovered they were carrying the same story. They married, and chose to build one company that could answer both of their lives at once: a real estate business with the rigor to acquire, value, and develop property properly, and the conviction to make sure fewer families are left, like theirs were, with a house that never gets finished.</p>
+      <p>VICJEN Housing Tech is that answer: a profitable, technology-driven business that funds real housing relief for families facing what Victor and Jennifer's families faced.</p>
+      <div class="story-signature">
+        <div>
+          <div class="signature-name">Victor</div>
+          <div class="signature-role">Co-Founder</div>
+        </div>
+        <div>
+          <div class="signature-name">Jennifer</div>
+          <div class="signature-role">Co-Founder</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="impact foundation" id="impact">
+  <span class="foundation-label mono" style="background:var(--green);color:#D6E0DA;">Our Commitment</span>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono">Beyond the transaction</span>
+      <h2>Shelter shouldn't depend on luck</h2>
+      <p>Our commercial model is built to fund our mission, not compete with it.</p>
+    </div>
+    <div class="impact-grid">
+      <div class="impact-card">
+        <span class="mono">Active in our pricing</span>
+        <h3>10% below market rent</h3>
+        <p>Every property we let is priced below average market rate, by design. This makes stable housing reachable for more families, not just the ones who can outbid the market.</p>
+      </div>
+      <div class="impact-card">
+        <span class="mono">Starting 2027</span>
+        <h3>One family's full year of rent</h3>
+        <p>Long before VICJEN Housing Tech existed, Victor and Jennifer were already paying rent for families in need and supporting causes close to their own story. In Nigeria, rent is paid yearly, not monthly, so starting in 2027, the company itself takes on that commitment: choosing one family at risk of homelessness and covering their full year's rent, every year, funded from our profit.</p>
+        <span class="pledge-badge">Founder-led since before the company</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="locations foundation" id="locations">
+  <span class="foundation-label mono">Where We Are</span>
+  <div class="wrap">
+    <div class="loc-item">
+      <span class="loc-dot"></span>
+      <div>
+        <h4>Anambra State</h4>
+        <span>Headquarters</span>
+      </div>
+    </div>
+    <div class="loc-item">
+      <span class="loc-dot"></span>
+      <div>
+        <h4>Abuja</h4>
+        <span>Operations</span>
+      </div>
+    </div>
+    <div class="loc-item">
+      <span class="loc-dot"></span>
+      <div>
+        <h4>Nigeria-wide</h4>
+        <span>Where we're headed next</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band foundation" id="contact">
+  <span class="foundation-label mono" style="background:var(--ink);color:#C9C3B4;">Work With Us</span>
+  <div class="wrap">
+    <h2>Building property in Nigeria you can actually trust</h2>
+    <p>Whether you're a funder, a partner, or someone looking to buy, sell, or rent, we would like to talk.</p>
+    <div class="hero-ctas">
+      <a href="mailto:contact@vicjenhousingtech.org" class="btn btn-solid">contact@vicjenhousingtech.org</a>
+      <a href="#offer" class="btn btn-outline">See the platform</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="brand"><svg class="brand-mark" viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg"><rect x="95" y="450" width="450" height="10" fill="#1C1B18"/><path d="M 125 195 L 192 195 L 270 405 L 348 195 L 412 195 L 305 450 L 233 450 Z" fill="#A0431F"/><path d="M 475 195 L 475 358 Q 475 452 378 452 L 332 452 L 332 396 L 372 396 Q 415 396 415 354 L 415 195 Z" fill="#1C1B18"/></svg>VICJEN Housing Tech</a>
+        <p>AI-powered real estate, development, and homelessness relief, headquartered in Anambra State, Nigeria.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Platform</h5>
+        <a href="#offer">Marketplace</a>
+        <a href="#offer">AI valuation</a>
+        <a href="#offer">Estate development</a>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a href="#story">Our story</a>
+        <a href="#impact">Impact</a>
+        <a href="#locations">Locations</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <a href="mailto:contact@vicjenhousingtech.org">contact@vicjenhousingtech.org</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 VICJEN Housing Tech. All rights reserved.</span>
+      <span>Anambra State &amp; Abuja, Nigeria</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ===== SAMPLE LISTINGS DATA =====
+  var listings = [
+    {id:"VHT-AWK-101", loc:"Awka", locLabel:"Awka, Anambra", type:"Land", size:600, price:18000000},
+    {id:"VHT-AWK-102", loc:"Awka", locLabel:"Awka, Anambra", type:"Land", size:720, price:21500000},
+    {id:"VHT-AWK-103", loc:"Awka", locLabel:"Awka, Anambra", type:"Duplex", size:450, price:85000000},
+    {id:"VHT-AWK-104", loc:"Awka", locLabel:"Awka, Anambra", type:"Duplex", size:510, price:96000000},
+    {id:"VHT-AWK-105", loc:"Awka", locLabel:"Awka, Anambra", type:"Bungalow", size:350, price:42000000},
+    {id:"VHT-AWK-106", loc:"Awka", locLabel:"Awka, Anambra", type:"Flat", size:115, price:24000000},
+    {id:"VHT-ONI-101", loc:"Onitsha", locLabel:"Onitsha, Anambra", type:"Land", size:500, price:22000000},
+    {id:"VHT-ONI-102", loc:"Onitsha", locLabel:"Onitsha, Anambra", type:"Land", size:580, price:25500000},
+    {id:"VHT-ONI-103", loc:"Onitsha", locLabel:"Onitsha, Anambra", type:"Flat", size:120, price:28000000},
+    {id:"VHT-ONI-104", loc:"Onitsha", locLabel:"Onitsha, Anambra", type:"Flat", size:135, price:31500000},
+    {id:"VHT-ONI-105", loc:"Onitsha", locLabel:"Onitsha, Anambra", type:"Duplex", size:480, price:95000000},
+    {id:"VHT-ONI-106", loc:"Onitsha", locLabel:"Onitsha, Anambra", type:"Bungalow", size:340, price:46000000},
+    {id:"VHT-NNW-101", loc:"Nnewi", locLabel:"Nnewi, Anambra", type:"Land", size:600, price:14000000},
+    {id:"VHT-NNW-102", loc:"Nnewi", locLabel:"Nnewi, Anambra", type:"Land", size:650, price:15200000},
+    {id:"VHT-NNW-103", loc:"Nnewi", locLabel:"Nnewi, Anambra", type:"Bungalow", size:320, price:33000000},
+    {id:"VHT-NNW-104", loc:"Nnewi", locLabel:"Nnewi, Anambra", type:"Duplex", size:400, price:58000000},
+    {id:"VHT-NNW-105", loc:"Nnewi", locLabel:"Nnewi, Anambra", type:"Flat", size:105, price:18500000},
+    {id:"VHT-ASB-101", loc:"Asaba-border", locLabel:"Asaba border, Anambra", type:"Land", size:650, price:16500000},
+    {id:"VHT-ASB-102", loc:"Asaba-border", locLabel:"Asaba border, Anambra", type:"Land", size:700, price:18000000},
+    {id:"VHT-ASB-103", loc:"Asaba-border", locLabel:"Asaba border, Anambra", type:"Duplex", size:420, price:70000000},
+    {id:"VHT-ASB-104", loc:"Asaba-border", locLabel:"Asaba border, Anambra", type:"Bungalow", size:310, price:38000000},
+    {id:"VHT-ASB-105", loc:"Asaba-border", locLabel:"Asaba border, Anambra", type:"Flat", size:98, price:16000000},
+    {id:"VHT-MTM-101", loc:"Maitama", locLabel:"Maitama, Abuja", type:"Land", size:600, price:120000000},
+    {id:"VHT-MTM-102", loc:"Maitama", locLabel:"Maitama, Abuja", type:"Land", size:650, price:135000000},
+    {id:"VHT-MTM-103", loc:"Maitama", locLabel:"Maitama, Abuja", type:"Duplex", size:550, price:280000000},
+    {id:"VHT-MTM-104", loc:"Maitama", locLabel:"Maitama, Abuja", type:"Flat", size:160, price:95000000},
+    {id:"VHT-GWA-101", loc:"Gwarinpa", locLabel:"Gwarinpa, Abuja", type:"Land", size:500, price:45000000},
+    {id:"VHT-GWA-102", loc:"Gwarinpa", locLabel:"Gwarinpa, Abuja", type:"Land", size:560, price:51000000},
+    {id:"VHT-GWA-103", loc:"Gwarinpa", locLabel:"Gwarinpa, Abuja", type:"Bungalow", size:380, price:68000000},
+    {id:"VHT-GWA-104", loc:"Gwarinpa", locLabel:"Gwarinpa, Abuja", type:"Duplex", size:470, price:142000000},
+    {id:"VHT-GWA-105", loc:"Gwarinpa", locLabel:"Gwarinpa, Abuja", type:"Flat", size:110, price:38000000},
+    {id:"VHT-GWA-106", loc:"Gwarinpa", locLabel:"Gwarinpa, Abuja", type:"Flat", size:128, price:43500000},
+    {id:"VHT-LUG-101", loc:"Lugbe", locLabel:"Lugbe, Abuja", type:"Land", size:600, price:25000000},
+    {id:"VHT-LUG-102", loc:"Lugbe", locLabel:"Lugbe, Abuja", type:"Land", size:640, price:27000000},
+    {id:"VHT-LUG-103", loc:"Lugbe", locLabel:"Lugbe, Abuja", type:"Flat", size:100, price:18000000},
+    {id:"VHT-LUG-104", loc:"Lugbe", locLabel:"Lugbe, Abuja", type:"Flat", size:118, price:21000000},
+    {id:"VHT-LUG-105", loc:"Lugbe", locLabel:"Lugbe, Abuja", type:"Duplex", size:400, price:55000000},
+    {id:"VHT-LUG-106", loc:"Lugbe", locLabel:"Lugbe, Abuja", type:"Bungalow", size:300, price:36000000},
+    {id:"VHT-KUB-101", loc:"Kubwa", locLabel:"Kubwa, Abuja", type:"Land", size:550, price:20000000},
+    {id:"VHT-KUB-102", loc:"Kubwa", locLabel:"Kubwa, Abuja", type:"Land", size:600, price:22000000},
+    {id:"VHT-KUB-103", loc:"Kubwa", locLabel:"Kubwa, Abuja", type:"Bungalow", size:330, price:40000000},
+    {id:"VHT-KUB-104", loc:"Kubwa", locLabel:"Kubwa, Abuja", type:"Duplex", size:410, price:62000000},
+    {id:"VHT-KUB-105", loc:"Kubwa", locLabel:"Kubwa, Abuja", type:"Flat", size:108, price:19500000}
+  ];
+
+  function formatNaira(n){
+    return '₦' + Math.round(n).toLocaleString('en-NG');
+  }
+
+  // ===== SEARCH ENGINE =====
+  function renderEmptySearch(){
+    var box = document.getElementById('searchResults');
+    box.className = 'search-results empty-state';
+    box.innerHTML = 'Set your filters and search to see matching listings from our sample dataset.';
+  }
+  renderEmptySearch();
+
+  document.getElementById('searchBtn').addEventListener('click', function(){
+    var loc = document.getElementById('searchLocation').value;
+    var type = document.getElementById('searchType').value;
+    var max = parseFloat(document.getElementById('searchMax').value) || Infinity;
+
+    var results = listings.filter(function(l){
+      return (!loc || l.loc === loc) && (!type || l.type === type) && l.price <= max;
+    });
+
+    var box = document.getElementById('searchResults');
+    box.className = 'search-results';
+
+    if(results.length === 0){
+      box.innerHTML = '<div class="search-results empty-state">No listings match those filters in our sample data. Try widening your search.</div>';
+      return;
+    }
+
+    var html = '<div class="results-count">' + results.length + ' match' + (results.length===1?'':'es') + ' found</div>';
+    results.forEach(function(l, i){
+      var subject = encodeURIComponent('Enquiry about ' + l.id + ' (' + l.type + ', ' + l.locLabel + ')');
+      var body = encodeURIComponent(
+        'Hello VICJEN Housing Tech,\n\nI would like more information about this listing:\n\n' +
+        'Reference: ' + l.id + '\n' +
+        'Type: ' + l.type + '\n' +
+        'Location: ' + l.locLabel + '\n' +
+        'Size: ' + l.size + ' sqm\n' +
+        'Listed price: ' + formatNaira(l.price) + '\n\n' +
+        'Please reach out to discuss further.\n\nThank you.'
+      );
+      var mailLink = 'mailto:contact@vicjenhousingtech.org?subject=' + subject + '&body=' + body;
+
+      html += '<div class="listing-card" style="animation-delay:' + (i*60) + 'ms">' +
+        '<div class="listing-card-top">' +
+        '<div class="listing-info"><span class="listing-ref">' + l.id + '</span>' +
+        '<h4>' + l.type + ' &middot; ' + l.locLabel + '</h4>' +
+        '<span>' + l.size + ' sqm</span></div>' +
+        '<div class="listing-price">' + formatNaira(l.price) + '</div>' +
+        '</div>' +
+        '<a href="' + mailLink + '" class="listing-contact-btn">Contact about this property</a>' +
+        '</div>';
+    });
+    box.innerHTML = html;
+  });
+
+  // ===== VALUATION ENGINE =====
+  // Base per-sqm rates by location (illustrative, sample model)
+  var baseRates = {
+    "Awka": 30000,
+    "Onitsha": 38000,
+    "Nnewi": 24000,
+    "Asaba-border": 28000,
+    "Maitama": 200000,
+    "Gwarinpa": 90000,
+    "Lugbe": 42000,
+    "Kubwa": 36000
+  };
+  var typeMultiplier = {
+    "Land": 1.0,
+    "Bungalow": 2.2,
+    "Duplex": 3.4,
+    "Flat": 2.6
+  };
+
+  function renderEmptyValuation(){
+    var box = document.getElementById('valuationResult');
+    box.className = 'valuation-result empty-state';
+    box.innerHTML = 'Fill in the property details and run a valuation to see a live estimate.';
+  }
+  renderEmptyValuation();
+
+  document.getElementById('valuateBtn').addEventListener('click', function(){
+    var loc = document.getElementById('valLocation').value;
+    var type = document.getElementById('valType').value;
+    var size = parseFloat(document.getElementById('valSize').value);
+    var condition = parseFloat(document.getElementById('valCondition').value);
+    var road = parseFloat(document.getElementById('valRoad').value);
+
+    var box = document.getElementById('valuationResult');
+
+    if(!size || size <= 0){
+      box.className = 'valuation-result empty-state';
+      box.innerHTML = 'Enter a valid size in square metres to run a valuation.';
+      return;
+    }
+
+    var base = baseRates[loc];
+    var mult = typeMultiplier[type];
+    var rawValue = base * mult * size * condition * road;
+
+    var low = rawValue * 0.91;
+    var high = rawValue * 1.09;
+
+    var locName = document.getElementById('valLocation').selectedOptions[0].text;
+    var typeName = document.getElementById('valType').selectedOptions[0].text;
+
+    box.className = 'valuation-result';
+    box.innerHTML =
+      '<div class="val-headline">' +
+        '<span class="mono">Estimated value</span>' +
+        '<div class="val-amount">' + formatNaira(rawValue) + '</div>' +
+        '<div class="val-range">Likely range: ' + formatNaira(low) + ' &ndash; ' + formatNaira(high) + '</div>' +
+        '<div class="val-breakdown">' +
+          '<div class="val-breakdown-row"><span>Location</span><span>' + locName + '</span></div>' +
+          '<div class="val-breakdown-row"><span>Property type</span><span>' + typeName + '</span></div>' +
+          '<div class="val-breakdown-row"><span>Size</span><span>' + size + ' sqm</span></div>' +
+          '<div class="val-breakdown-row"><span>Base rate applied</span><span>' + formatNaira(base) + ' / sqm</span></div>' +
+        '</div>' +
+      '</div>';
+  });
+  document.getElementById('navToggle').addEventListener('click', function(){
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+  document.querySelectorAll('.nav-links a').forEach(function(link){
+    link.addEventListener('click', function(){
+      document.getElementById('navLinks').classList.remove('open');
+    });
+  });
+
+  // Restrained scroll reveal
+  var revealTargets = document.querySelectorAll('.section-head, .mission-card, .problem-card, .offer-card, .impact-card, .story-visual, .story > div, .hero-stat-block');
+  revealTargets.forEach(function(el){ el.classList.add('reveal'); });
+
+  // Stagger cards within their own grid group
+  ['.mission-grid','.problem-grid','.offer-grid','.impact-grid'].forEach(function(sel){
+    var grid = document.querySelector(sel);
+    if(grid){
+      Array.from(grid.children).forEach(function(card, i){
+        card.style.transitionDelay = (i * 90) + 'ms';
+      });
+    }
+  });
+
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+    revealTargets.forEach(function(el){ io.observe(el); });
+  } else {
+    revealTargets.forEach(function(el){ el.classList.add('in'); });
+  }
+</script>
+
+</body>
+</html>
